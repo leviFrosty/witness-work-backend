@@ -3,24 +3,18 @@ package main
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/joho/godotenv"
 )
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	queryParams := request.QueryStringParameters
 
 	// TODO: setup aws credential store to handle env files setup
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
 
 	// Retrieve environment variable
 	hereApiKey := os.Getenv("HERE_API_KEY")
